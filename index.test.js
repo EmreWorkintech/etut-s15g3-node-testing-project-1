@@ -8,11 +8,31 @@ describe('[Görev 1] nesneyiTrimle', () => {
     const actual = utils.nesneyiTrimle(input)
     expect(actual).toEqual(expected)
   })
+  test("[2] orjinalini değiştirmez yeni bir kopya döner", () => {
+    const input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+    utils.nesneyiTrimle(input)
+    expect(input).toEqual( { foo: '  foo ', bar: 'bar ', baz: ' baz' })
+  })
 })
 
 describe('[Görev 2] verileniTrimle', () => {
-  // test('[3] verilen propu trimliyor', () => {})
-  // test('[4] verilen dışındaki proplar trimlenmeden döndürülüyor', () => {})
+  test('[3] verilen propu trimliyor', () => {
+    const input = { isim: '  jane  ' , yas: ' 34 '}
+    const expected = { isim: 'jane', yas: ' 34 '}
+    const actual = utils.verileniTrimle(input,"isim")
+    expect(actual).toEqual(expected)
+  })
+   test('[4] verilen dışındaki proplar trimlenmeden döndürülüyor', () => {
+    const input = { isim: '  jane  ' , yas: ' 34 '}
+    const actual = utils.verileniTrimle(input,"isim")
+    expect(input.yas).toBe(' 34 ')
+   })
+   test('[4a] verilen dışındaki proplar trimlenmeden döndürülüyor', () => {
+    const input = { isim: '  jane  ' , yas: ' 34 '}
+    const actual = utils.verileniTrimle(input)
+    expect(actual).toEqual(input)
+   })
+   
 })
 
 describe('[Görev 3] enBuyukTamsayiyiBul', () => {

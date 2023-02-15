@@ -1,5 +1,6 @@
 /**
- * [Görev 1] nesneyiTrimle bir nesne alır ve proplarını trimler (trim; bir stringin başında ve sonunda bulunan boşlukları(whitespaces) temizlemek)
+ * [Görev 1] nesneyiTrimle bir nesne alır ve proplarını trimler
+ *  (trim; bir stringin başında ve sonunda bulunan boşlukları(whitespaces) temizlemek)
  * @param {object} obj - propları string olan bir nesne
  * @returns {object} - stringleri trimlenmiş bir nesne döndürür
  *
@@ -7,19 +8,33 @@
  * nesneyiTrimle({ isim: '  jane  ' }) // yeni bir nesne döndürür { name: 'jane' }
  */
 function nesneyiTrimle(obj) {
-  // ✨ kodlar buraya
+  let result = {};
+  for(let key in obj){
+    result[key] = obj[key].trim()
+  }
+  return result;
 }
 
 /**
- * [Görev 2] verileniTrimle propları string olan bir nesne alır ve gönderilen propu trimler.
+ * [Görev 2] verileniTrimle propları string olan bir nesne alır ve
+ *  gönderilen propu trimler.
  * @param {object} obj - propları string olan bir nesne
  * @returns {object} - istenilen propu trimlenmiş nesneyi döndürür
  *
  * ÖRNEK
- * verileniTrimle({ isim: '  jane  ' , yas: ' 34 '}, 'isim') // şunu döndürür { isim: 'jane', yas: ' 34 '}
+ * verileniTrimle({ isim: '  jane  ' , yas: ' 34 '}, 'isim') //
+ *  şunu döndürür { isim: 'jane', yas: ' 34 '}
  */
 function verileniTrimle(obj, prop) {
-  // ✨ kodlar buraya
+  let result = {};
+  for(let key in obj){
+    if(key === prop){
+      result[key] = obj[key].trim()
+    }else{
+      result[key] = obj[key]
+    }
+  }
+  return result;
 }
 
 /**
