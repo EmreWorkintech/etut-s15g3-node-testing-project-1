@@ -120,7 +120,7 @@ function Mevsimler() {
 const mevsimler = new Mevsimler();
 console.log(mevsimler.sonraki()); // "yaz" döndürür
 
-function Araba(/*kodlar buraya */) {
+function Araba(isim, depoBenzin, kml) {
   /**
    * [Görev 6A] Araba 3 argüman alarak bir araba nesnesi oluşturur
    * @param {string} isim - arabanın ismi
@@ -131,6 +131,9 @@ function Araba(/*kodlar buraya */) {
   this.odometer = 0; // araba 0 kilometrede yüklenecek
   this.depo = depoBenzin; // araba full depoyla yüklenecek
   // ✨ gerekli propları ekleyin
+  this.isim = isim;
+  this.kml = kml;
+  this.maxDepo = depoBenzin;
 
   /**
    * [Görev 6B] sur metodu odometera km ekler ve aynı oranda depodan benzin tüketir
@@ -147,6 +150,17 @@ function Araba(/*kodlar buraya */) {
    */
   this.sur = (gidilecekyol) => {
     // ✨ kodlar buraya
+
+    let maxYol = this.depo * this.kml;
+    if (gidilecekyol <= maxYol) {
+      this.odometer += gidilecekyol;
+      this.depo -= gidilecekyol / this.kml;
+    } else {
+      this.depo = 0;
+      this.odometer += maxYol;
+    }
+
+    return this.odometer;
   };
 
   /**
@@ -162,6 +176,16 @@ function Araba(/*kodlar buraya */) {
    */
   this.benzinal = (litre) => {
     // ✨ kodlar buraya
+
+    const kalanKapasite = this.maxDepo - this.depo;
+
+    if (litre <= kalanKapasite) {
+      this.depo = this.depo + litre;
+    } else {
+      this.depo = this.maxDepo;
+    }
+
+    return this.depo * this.kml;
   };
 }
 
@@ -192,13 +216,13 @@ function Araba(/*kodlar buraya */) {
 //   console.log(false);
 // });
 
-async function asenkronCiftSayi(sayi){
+async function asenkronCiftSayi(sayi) {
   this.sayi = sayi;
 
-  if(sayi%2 === 0 ){
-    return true
-  }else{
-    return false
+  if (sayi % 2 === 0) {
+    return true;
+  } else {
+    return false;
   }
 }
 

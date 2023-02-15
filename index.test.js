@@ -116,12 +116,31 @@ describe("[Görev 5] Mevsimler", () => {
 describe("[Görev 6] Araba", () => {
   let focus;
   beforeEach(() => {
-    focus = new utils.Car("focus", 20, 30); // her test yeni bir araba oluşturur
+    focus = new utils.Araba("focus", 20, 30); // her test yeni bir araba oluşturur
   });
-  // test('[15] arabayı sürünce güncellenmiş odometer döndürüyor', () => {})
-  // test('[16] arabayı sürmek benzin tüketiyor', () => {})
-  // test('[17] benzinalma arabayı sürmeye izin veriyor', () => {})
-  // test('[18] dolu depoya benzin alma etki etmiyor', () => {})
+  test("[15] arabayı sürünce güncellenmiş odometer döndürüyor", () => {
+    expect(focus.sur(100)).toEqual(100);
+    expect(focus.sur(100)).toEqual(200);
+  });
+
+  test("[16] arabayı sürmek benzin tüketiyor", () => {
+    focus.sur(600);
+    expect(focus.sur(1)).toEqual(600);
+    expect(focus.sur(100)).toEqual(600);
+    expect(focus.depo).toBe(0);
+  });
+
+  test("[17] benzinalma arabayı sürmeye izin veriyor", () => {
+    focus.sur(600);
+    focus.benzinal(20);
+    focus.sur(300);
+    expect(focus.odometer).toBe(900);
+  });
+  test("[18] dolu depoya benzin alma etki etmiyor", () => {
+    focus.benzinal(100);
+    focus.sur(1000);
+    expect(focus.odometer).toBe(600);
+  });
 });
 
 describe("[Görev 7] asenkronCiftSayi", () => {
