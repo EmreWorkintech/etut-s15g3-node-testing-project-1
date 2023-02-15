@@ -73,12 +73,44 @@ describe("[Görev 5] Mevsimler", () => {
   beforeEach(() => {
     mevsimler = new utils.Mevsimler(); // her test yeni bir mevsimle başlar
   });
-  // test('[9] mevsimler.sonraki İLK çağırılışında "yaz" döndürüyor', () => {})
-  // test('[10] mevsimler.sonraki İKİNCİ çağırılışında "sonbahar" döndürüyor', () => {})
-  // test('[11] mevsimler.sonraki ÜÇÜNCÜ çağırılışında "kış" döndürüyor', () => {})
-  // test('[12] mevsimler.sonraki DÖRDÜNCÜ çağırılışında "ilkbahar" döndürüyor', () => {})
-  // test('[13] mevsimler.sonraki BEŞİNCİ çağırılışında "yaz" döndürüyor', () => {})
-  // test('[14] mevsimler.sonraki KIRKINCI çağırılışında "ilkbahar" döndürüyor', () => {})
+  test('[9] mevsimler.sonraki İLK çağırılışında "yaz" döndürüyor', () => {
+    expect(mevsimler.sonraki()).toBe("yaz");
+  });
+  test('[10] mevsimler.sonraki İKİNCİ çağırılışında "sonbahar" döndürüyor', () => {
+    var repeat = 2;
+    for (var i = 1; i < repeat; i++) {
+      mevsimler.sonraki();
+    }
+    expect(mevsimler.sonraki()).toBe("sonbahar");
+  });
+  test('[11] mevsimler.sonraki ÜÇÜNCÜ çağırılışında "kış" döndürüyor', () => {
+    var repeat = 3;
+    for (var i = 1; i < repeat; i++) {
+      mevsimler.sonraki();
+    }
+    expect(mevsimler.sonraki()).toBe("kış");
+  });
+  test('[12] mevsimler.sonraki DÖRDÜNCÜ çağırılışında "ilkbahar" döndürüyor', () => {
+    var repeat = 4;
+    for (var i = 1; i < repeat; i++) {
+      mevsimler.sonraki();
+    }
+    expect(mevsimler.sonraki()).toBe("ilkbahar");
+  });
+  test('[13] mevsimler.sonraki BEŞİNCİ çağırılışında "yaz" döndürüyor', () => {
+    var repeat = 5;
+    for (var i = 1; i < repeat; i++) {
+      mevsimler.sonraki();
+    }
+    expect(mevsimler.sonraki()).toBe("yaz");
+  });
+  test('[14] mevsimler.sonraki KIRKINCI çağırılışında "ilkbahar" döndürüyor', () => {
+    var repeat = 40;
+    for (var i = 1; i < repeat; i++) {
+      mevsimler.sonraki();
+    }
+    expect(mevsimler.sonraki()).toBe("ilkbahar");
+  });
 });
 
 describe("[Görev 6] Araba", () => {
@@ -93,6 +125,12 @@ describe("[Görev 6] Araba", () => {
 });
 
 describe("[Görev 7] asenkronCiftSayi", () => {
-  // test('[19] bir çift sayı verilirse true çözümlüyor', () => {})
-  // test('[20] tek sayı verilirse false çözümlüyor', () => {})
+  test("[19] bir çift sayı verilirse true çözümlüyor", async () => {
+    const number = await utils.asenkronCiftSayi(2);
+    expect(number).toBe(true);
+  });
+  test("[20] tek sayı verilirse false çözümlüyor", async () => {
+    const number = await utils.asenkronCiftSayi(3);
+    expect(number).toBe(false);
+  });
 });

@@ -92,6 +92,8 @@ function Mevsimler() {
    * [Görev 5A] Mevsimler , bir mevsimler nesnesi oluşturur
    */
 
+  this.mevsimler = ["ilkbahar", "yaz", "sonbahar", "kış"];
+
   // ✨ gerekli propları ekleyin
 
   /**
@@ -106,10 +108,17 @@ function Mevsimler() {
    * mevsimler.sonraki() // "ilkbahar" döndürür
    * mevsimler.sonraki() // "yaz" döndürür
    */
+  this.index = 0;
   this.sonraki = () => {
-    // ✨ kodlar buraya
+    var nextIndex = (this.index + 1) % this.mevsimler.length;
+    this.index = nextIndex;
+    var newMevsim = this.mevsimler[nextIndex];
+    return newMevsim;
   };
 }
+
+const mevsimler = new Mevsimler();
+console.log(mevsimler.sonraki()); // "yaz" döndürür
 
 function Araba(/*kodlar buraya */) {
   /**
@@ -169,8 +178,28 @@ function Araba(/*kodlar buraya */) {
  *    // sonuç false
  * })
  */
-function asenkronCiftSayi(sayi) {
-  // ✨ implement
+// function asenkronCiftSayi(sayi) {
+//   this.sayi = sayi;
+
+//   return new Promise((res, rej) => {
+//     sayi % 2 === 0 ? res(true) : res(false);
+//   });
+// }
+// asenkronCiftSayi(2).then((result) => {
+//   console.log(true);
+// });
+// asenkronCiftSayi(3).then((result) => {
+//   console.log(false);
+// });
+
+async function asenkronCiftSayi(sayi){
+  this.sayi = sayi;
+
+  if(sayi%2 === 0 ){
+    return true
+  }else{
+    return false
+  }
 }
 
 module.exports = {
